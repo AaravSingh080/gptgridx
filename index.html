@@ -26,10 +26,11 @@
       z-index: 999;
     }
     .chat-container {
+  display: none;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease-in-out;
-  pointer-events: none;
+  position: fixed;
   z-index: 998;
 
       position: fixed;
@@ -120,6 +121,7 @@
     }
   
 .chat-container.open {
+  display: flex;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -149,8 +151,10 @@
     function toggleChat() {
       if (chatContainer.classList.contains("open")) {
   chatContainer.classList.remove("open");
+  chatContainer.style.display = "none";
 } else {
   chatContainer.classList.add("open");
+  chatContainer.style.display = "flex";
 }
     }
 
