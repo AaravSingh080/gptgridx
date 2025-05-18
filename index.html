@@ -26,6 +26,23 @@
       z-index: 999;
     }
     .chat-container {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 360px;
+  height: 500px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  flex-direction: column;
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  z-index: 998;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+
       position: fixed;
       bottom: 90px;
       right: 20px;
@@ -38,15 +55,6 @@
       padding: 15px;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
       z-index: 998;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.3s ease-in-out;
-    }
-    .chat-container.open {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
     }
     .faq-buttons {
       display: flex;
@@ -121,7 +129,14 @@
       0% { opacity: 0.2; }
       100% { opacity: 1; }
     }
-  </style>
+  
+.chat-container.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+</style>
 </head>
 <body>
   <button class="chat-widget-icon" onclick="toggleChat()">💬</button>
@@ -144,19 +159,13 @@
     const inputEl = document.getElementById("input");
 
     function toggleChat() {
-      if (chatContainer.classList.contains("open")) {
-        chatContainer.classList.remove("open");
-        chatContainer.style.display = "none";
-      } else {
-        chatContainer.classList.add("open");
-        chatContainer.style.display = "flex";
-      }
+      chatContainer.classList.toggle("open");
     }
 
     document.addEventListener("DOMContentLoaded", () => {
       addMessage("👋 Welcome to GPTGRIDX - Your Shopify Assistant! Ask anything about our store, orders, or products.", "bot");
       scrollToBottom();
-    });
+    };
 
     inputEl.addEventListener("keydown", async (e) => {
       if (e.key === "Enter" && inputEl.value.trim() !== "") {
