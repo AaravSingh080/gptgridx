@@ -30,7 +30,8 @@
   transform: translateY(20px);
   transition: all 0.3s ease-in-out;
   pointer-events: none;
-  
+  z-index: 998;
+
       position: fixed;
       bottom: 90px;
       right: 20px;
@@ -147,10 +148,10 @@
 
     function toggleChat() {
       if (chatContainer.classList.contains("open")) {
-    chatContainer.classList.remove("open");
-  } else {
-    chatContainer.classList.add("open");
-  }
+  chatContainer.classList.remove("open");
+} else {
+  chatContainer.classList.add("open");
+}
     }
 
     document.addEventListener("DOMContentLoaded", () => {
